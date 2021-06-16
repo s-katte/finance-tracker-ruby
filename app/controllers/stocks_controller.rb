@@ -1,18 +1,13 @@
 class StocksController < ApplicationController
 
   def search
-    if params[:stock].present?
-      @stock = Stock.new_from_lookup(params[:stock])
-      if @stock
-        render "users/my_portfolio"
-      else
-        flash[:danger] = "Wrong symbol"
-        redirect_to my_portfolio_path
-      end
+    if params[:stock].blank?
+      flash.now[:danger] = "Empty search query"
     else
-      flash[:danger] = "Empty search query"
-      redirect_to my_portfolio_path
+      @stock = Stock.new_from_lookup(params[:stock])
+      flash.now[:danger] = "Wrong symbol" unless @stock
     end
+    render partial: 'users/result'
   end
 
 end
