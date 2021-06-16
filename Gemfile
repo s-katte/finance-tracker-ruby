@@ -15,6 +15,7 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
+gem 'stock_quote'
 
 group :development, :test do
   gem 'pry', '~> 0.13.1'
